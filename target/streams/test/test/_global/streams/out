@@ -1,0 +1,12 @@
+[0m[[0m[0mdebug[0m] [0m[0mRunning TaskDef(TestLoader, org.scalatest.tools.Framework$$anon$1@6d3f7d38, false, [SuiteSelector])[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mTestLoader:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Same number of records loaded?[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Same first login?[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- Same most popular category?[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mRun completed in 15 seconds, 786 milliseconds.[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTotal number of tests run: 3[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mSuites: completed 1, aborted 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[36mTests: succeeded 3, failed 0, canceled 0, ignored 0, pending 0[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mAll tests passed.[0m[0m
+[0m[[0m[0mdebug[0m] [0m[0mPassed tests:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	TestLoader[0m

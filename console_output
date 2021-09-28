@@ -1,0 +1,98 @@
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+21/09/29 02:46:44 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+21/09/29 02:46:45 WARN Utils: Service 'SparkUI' could not bind on port 4040. Attempting port 4041.
+21/09/29 02:46:45 WARN Utils: Service 'SparkUI' could not bind on port 4041. Attempting port 4042.
+21/09/29 02:46:49 INFO metastore: Trying to connect to metastore with URI thrift://localhost:9083
+21/09/29 02:46:49 INFO metastore: Opened a connection to metastore, current connections: 1
+21/09/29 02:46:49 INFO metastore: Connected to metastore.
++----------+----------------------------+-----+-----------+---+-----------+---------------+-------------+
+|timestamp |url                         |login|region_code|id |valid_today|valid_not_today|not_timestamp|
++----------+----------------------------+-----+-----------+---+-----------+---------------+-------------+
+|1576022400|http://yandex.ru            |vasya|77         |0  |true       |false          |false        |
+|1576022412|http://google.ru            |vasya|77         |1  |true       |false          |false        |
+|abc       |http://shop.ru/goods/iphonex|petya|59         |2  |null       |null           |true         |
+|1576022500|http://yandex.ru            |vika |59         |3  |true       |false          |false        |
+|1576022412|http://google.ru            |sveta|77         |4  |true       |false          |false        |
++----------+----------------------------+-----+-----------+---+-----------+---------------+-------------+
+only showing top 5 rows
+
+Loaded raw data in: 2.343 s
++----------+----------------------------+-----+-----------+---+
+|timestamp |url                         |login|region_code|id |
++----------+----------------------------+-----+-----------+---+
+|1576022400|http://yandex.ru            |vasya|77         |0  |
+|1576022412|http://google.ru            |vasya|77         |1  |
+|null      |http://shop.ru/goods/iphonex|petya|59         |2  |
+|1576022500|http://yandex.ru            |vika |59         |3  |
+|1576022412|http://google.ru            |sveta|77         |4  |
++----------+----------------------------+-----+-----------+---+
+only showing top 5 rows
+
+Parsed raw data in: 0.188 s
++----------+----------------------------+-----+-----------+---+------+
+|timestamp |url                         |login|region_code|id |mrf   |
++----------+----------------------------+-----+-----------+---+------+
+|1576022400|http://yandex.ru            |vasya|77         |0  |center|
+|1576022412|http://google.ru            |vasya|77         |1  |center|
+|null      |http://shop.ru/goods/iphonex|petya|59         |2  |ural  |
+|1576022500|http://yandex.ru            |vika |59         |3  |ural  |
+|1576022412|http://google.ru            |sveta|77         |4  |center|
++----------+----------------------------+-----+-----------+---+------+
+only showing top 5 rows
+
+21/09/29 02:46:54 WARN SessionState: METASTORE_FILTER_HOOK will be ignored, since hive.security.authorization.manager is set to instance of HiveAuthorizerFactory.
+21/09/29 02:46:54 INFO metastore: Mestastore configuration hive.metastore.filter.hook changed from org.apache.hadoop.hive.metastore.DefaultMetaStoreFilterHookImpl to org.apache.hadoop.hive.ql.security.authorization.plugin.AuthorizationMetaStoreFilterHook
+21/09/29 02:46:54 INFO metastore: Closed a connection to metastore, current connections: 0
+21/09/29 02:46:54 INFO metastore: Trying to connect to metastore with URI thrift://localhost:9083
+21/09/29 02:46:54 INFO metastore: Opened a connection to metastore, current connections: 1
+21/09/29 02:46:54 INFO metastore: Connected to metastore.
+21/09/29 02:46:54 INFO metastore: Trying to connect to metastore with URI thrift://localhost:9083
+21/09/29 02:46:54 INFO metastore: Opened a connection to metastore, current connections: 2
+21/09/29 02:46:54 INFO metastore: Connected to metastore.
+Wrote logs enriched by mrf codes to Hive database in 3.006 s
++-----+----------+
+|login|timestamp |
++-----+----------+
+|null |1576022412|
+|sveta|1576022412|
+|petya|1576022435|
+|vasya|1576022435|
+|vika |1576022700|
++-----+----------+
+only showing top 5 rows
+
+Wrote first session for a user to Hive database in 2.671 s
++-----+--------+-----+
+|login|category|count|
++-----+--------+-----+
+|null |search  |1    |
+|sveta|search  |7    |
+|petya|shop    |4    |
+|vasya|search  |14   |
+|vika |search  |8    |
++-----+--------+-----+
+only showing top 5 rows
+
+Wrote most popular category for a user to Hive database in 3.711 s
+Total number of records: 56
+Number of todays's valid timestamps: 54
+Number of valid not today's timestamps: 0
+Number of not valid timestamps: 2
+Number of empty logins 1
+Number of bad URLs (the host is not in the lookup table) : 6
+Number of bad regions: 3
+Saving metrics to hdfs:/user/sergey/clickstream/20191211/metrics.txt
+Showing sample of bad data:
++----------+----------------------------+-----+-----------+---+
+|timestamp |url                         |login|region_code|id |
++----------+----------------------------+-----+-----------+---+
+|abc       |http://shop.ru/goods/iphonex|petya|59         |2  |
+|1576022500|http://shop.ru/goods/iphonex|vika |abc        |6  |
+|1576022635|http://food-shop            |kolya|59         |9  |
+|1576022900|http://sports-wiki.ru/apple/|kolya|1000       |10 |
+|1576022400|123                         |vasya|77         |14 |
++----------+----------------------------+-----+-----------+---+
+only showing top 5 rows
+
+Calculated metrics in 1.682 s
+Total time spent: 13.601 s
